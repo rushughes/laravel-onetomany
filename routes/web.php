@@ -35,7 +35,12 @@ Route::get('/read/{id}', function ($id) {
   }
 });
 
-Route::get('/update/{id}/{post_id}', function($id, $post_id) {
+Route::get('/update/{id}/{post_id}', function ($id, $post_id) {
   $user = User::findOrFail($id);
   $user->posts()->whereId($post_id)->update(['title'=>'We Updated The Title']);
+});
+
+Route::get('/delete/{id}/{post_id}', function ($id, $post_id) {
+  $user = User::findOrFail($id);
+  $user->posts()->whereId($post_id)->delete();
 });
