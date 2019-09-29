@@ -34,3 +34,8 @@ Route::get('/read/{id}', function ($id) {
     echo '<hr />';
   }
 });
+
+Route::get('/update/{id}/{post_id}', function($id, $post_id) {
+  $user = User::findOrFail($id);
+  $user->posts()->whereId($post_id)->update(['title'=>'We Updated The Title']);
+});
