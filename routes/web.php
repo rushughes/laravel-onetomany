@@ -23,3 +23,14 @@ Route::get('/create/{id}', function ($id) {
   $post = new Post(['title'=>'Post Title', 'body'=>'Post Body']);
   $user->posts()->save($post);
 });
+
+Route::get('/read/{id}', function ($id) {
+  $user = User::findOrFail($id);
+  $posts = $user->posts;
+  //return $posts;
+  foreach($posts as $post) {
+    echo '<h1>' . $post->title . '</h1><br />';
+    echo $post->body . ' ' . $post->id . '<br />';
+    echo '<hr />';
+  }
+});
