@@ -1,5 +1,8 @@
 <?php
 
+use App\User;
+use App\Post;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +16,10 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/create/{id}', function ($id) {
+  $user = User::findOrFail($id);
+  $post = new Post(['title'=>'Post Title', 'body'=>'Post Body']);
+  $user->posts()->save($post);
 });
